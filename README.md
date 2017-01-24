@@ -34,7 +34,7 @@ See example in the Files.d folder
 #### Get the source:
 To recover the source, type:
 ```sh
-$ cd ~ /
+$ cd ~/
 $ clone git https://github.com/RootKitDev/Athena.git / home / athena
 ```
 
