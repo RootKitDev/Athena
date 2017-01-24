@@ -1,0 +1,67 @@
+
+*** These modified files were found in JOE when it aborted on Fri Oct 14 11:32:36 2016
+*** JOE was aborted because the terminal closed
+
+*** File 'test.sh'
+#! /bin/bash
+
+
+source ./Libs.d/Outsourcing.sh
+source ./Libs.d/Data.sh
+source ./Libs.d/SQL.sh
+
+while read line  
+do  
+    if [[ $line =~ "[Outsourcing]" ]];
+    then
+        while !([[ $line =~ "[/Outsourcing]" ]]) && read line  
+        do
+            Check_Outsource
+        done
+~/Dev_Zone/Save_Project/Options/Cnf
+    fi
+done < ./Files.d/Config.conf    
+
+Conf_Outsource
+
+
+while read line  
+do  
+    if [[ $line =~ "[SQL]" ]];
+    then
+        while !([[ $line =~ "[/SQL]" ]]) && read line  
+        do
+            Check_SQL
+        done
+    fi
+    
+done < ./Files.d/Config.conf
+
+Conf_SQL
+
+
+while read line  
+do  
+    if [[ $line =~ "[Data]" ]];
+    then
+        while !([[ $line =~ "[/Data]" ]]) && read line  
+        do
+            Check_Data
+        done
+    fi
+done < ./Files.d/Config.conf
+
+Conf_Data
+
+*** File '(Unnamed)'
+.bashrc
+gitlabrm
+superRm.sh
+superRm.sh
+gitlabrm
+/home/rootkit/.bashrc
+/var/www/RootKit/Save.sh
+ListSaveJou
+/home/rootkit/.c9/metadata/workspace/Commun/Backup_Home/Main.sh
+/home/rootkit/Zone51/SaveSystem/.git/MERGE_MSG
+test.sh
