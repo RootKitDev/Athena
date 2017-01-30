@@ -4,46 +4,46 @@
 # Sql_Manager.sh
 # Utilité: Librairie lié aux sauvegardes de type SQL
 # Auteur: RootKitDev <RootKit.Dev@gmail.com>
-# Mise à jour le: 23/01/2017
+# Mise à jour le: 30/01/2017
 ######################################
 
+
 SQL_save(){
+    
+    SUB_LOG="_SQL"
+    
+    source $COMMON_LIB/Save_Manager.sh    
+    source $COMMON_LIB/Export_Manager.sh
+    source $COMMON_LIB/Partners_Manager.sh
+    source $COMMON_LIB/CheckSum_Manager.sh
+    source $COMMON_LIB/States_Manager.sh
+    source $COMMON_LIB/Variable_Manager.sh
+    
+    # Writing in the early log
+    
+    echo "" >> $LOG_PATH/Save.log
+    echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" >> $LOG_PATH/Save.log
+    echo `date` >> $LOG_PATH/Save.log
+    echo "Sauvegarde SQL" >> $LOG_PATH/Save.log
+    echo "" >> $LOG_PATH/Save.log
+    echo "Cf Save_SQL.log" >> $LOG_PATH/Save.log
+    
+    echo "" >> $LOG_PATH/Save_SQL.log
+    echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" >> $LOG_PATH/Save_SQL.log
+    echo `date` >> $LOG_PATH/Save_SQL.log
+        
     if [[ -f $FLAG_PATH/PS-000 ]];
     then
     	echo ""  >> $LOG_PATH/Save.log
-    	echo "Fanion \"PS-000\" a été posé," >> $LOG_PATH/Save.log
-    	echo "La sauvegarde a été déplanifiée" >> $LOG_PATH/Save.log
+    	echo "Fanion \"PS-000\" a été posé," >> $LOG_PATH/Save_SQL.log
+    	echo "La sauvegarde a été déplanifiée" >> $LOG_PATH/Save_SQL.log
     	State_Save "11"
     else
-        SUB_LOG="_SQL"
-    
-        source $COMMON_LIB/Save_Manager.sh    
-        source $COMMON_LIB/Export_Manager.sh
-        source $COMMON_LIB/Partners_Manager.sh
-        source $COMMON_LIB/CheckSum_Manager.sh
-        source $COMMON_LIB/States_Manager.sh
-        source $COMMON_LIB/Variable_Manager.sh
-    
+        
         Day=$(date +"%d")
         Month=$(date +"%m")
     
         DateSave=$(date +%Y_%m_%d_%HH%M)
-    
-        # Writing in the early log
-    
-        echo "" >> $LOG_PATH/Save.log
-        echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" >> $LOG_PATH/Save.log
-        echo `date` >> $LOG_PATH/Save.log
-        echo "Sauvegarde SQL" >> $LOG_PATH/Save.log
-        echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" >> $LOG_PATH/Save.log
-        echo 'Sauvegarde SQL Week-End (Sauvegarde Full de chaque base)' >> $LOG_PATH/Save.log
-        echo "Cf Save_SQL.log" >> $LOG_PATH/Save.log
-        echo "" >> $LOG_PATH/Save.log
-    
-        echo "" >> $LOG_PATH/Save_SQL.log
-        echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" >> $LOG_PATH/Save_SQL.log
-        echo `date` >> $LOG_PATH/Save_SQL.log
-        echo "" >> $LOG_PATH/Save_SQL.log
     
         mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "UPDATE Save SET type=3 WHERE month=$Month and day=$Day"
         State_Save "10"
