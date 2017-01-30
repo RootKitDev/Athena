@@ -2,7 +2,7 @@ commit 4ce243903bd09a2abe5e231cdcb87aaf03db7eba
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Mon Jan 30 16:23:22 2017 +0100
 
-     [001 Resolv]
+     [001 Resolved]
      "add PS-000 Flag on SQL backup script" 
      => The SQL backup script does not intercept the PS-000 Flag 
 
