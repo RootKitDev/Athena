@@ -4,13 +4,15 @@
 # Partners_Manager.sh
 # Utilité: Librairie de vérification de la disponibilité des Partenaires
 # Auteur: RootKitDev <RootKit.Dev@gmail.com>
-# Mise à jour le: 23/01/2017
+# Mise à jour le: 02/02/2017
 ######################################
 
 Check_Partners(){
 
     IP=$(mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "SELECT ip As '' FROM Partners WHERE host='$REMOTE_HOST'")
-
+    if [[ -z  "$IP" ]]; then
+        IP=$(nslookup $REMOTE_HOST| grep Address | tail -1 | cut -d' ' -f2)
+    fi
     Res=$(traceroute $REMOTE_HOST | grep $IP | sed '1d')
 
     if [[ -z "$Res" ]]; then
