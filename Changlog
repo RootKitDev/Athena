@@ -1,3 +1,9 @@
+commit 1b5e4df53db3540ba10a578eb532db3aaa6b7178
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Thu Feb 2 14:18:26 2017 +0100
+
+    Addition of a backup solution if there is no partner in the database
+
 commit 93d9f49ad2e53d31417a36d509a0769846d1dd4e
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Mon Jan 30 16:30:43 2017 +0100
