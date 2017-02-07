@@ -4,7 +4,7 @@
 # Data_Manager.sh
 # Utilité: Librairie lié aux sauvegardes de type données
 # Auteur: RootKitDev <RootKit.Dev@gmail.com>
-# Mise à jour le: 23/01/2017
+# Mise à jour le: 07/02/2017
 ######################################
 
 
@@ -20,6 +20,13 @@ source $COMMON_LIB/Partners_Manager.sh
 source $COMMON_LIB/CheckSum_Manager.sh
 source $COMMON_LIB/States_Manager.sh
 source $COMMON_LIB/Variable_Manager.sh
+
+Old=$(mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "SELECT DisplayState As '' FROM State INNER JOIN Save ON State.id = Save.state WHERE month='$Month' and day='$Day'")
+Old=${Old:1:${#Old}}
+    
+if [[ $Old  =~ "SQL" ]]; then
+	exit 0
+fi
 
 State_Save "10"
 
@@ -42,7 +49,7 @@ then
 	echo "La sauvegarde a été déplanifiée" >> $LOG_PATH/Save.log
 	State_Save "11"
 else
-	if [ "$Day" == "01" ] || [ -f $FLAG_PATH/EX-000 ];
+	if ([[ $Day -ge 8 ]] && [[ $DoW -eq 7 ]]) || [[ -f $FLAG_PATH/EX-000 ]];
 	then
 	    if [ ! -f $FLAG_PATH/PS-001 ] ;
 	    then
