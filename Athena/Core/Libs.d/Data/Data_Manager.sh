@@ -49,7 +49,7 @@ then
 	echo "La sauvegarde a été déplanifiée" >> $LOG_PATH/Save.log
 	State_Save "11"
 else
-	if ([[ $Day -ge 8 ]] && [[ $DoW -eq 7 ]]) || [[ -f $FLAG_PATH/EX-000 ]];
+	if (([[ $Day -ge 8 ]] && [[ $Day -le 14 ]]) && [[ $DoW -eq 7 ]]) || [[ -f $FLAG_PATH/EX-000 ]];
 	then
 	    if [ ! -f $FLAG_PATH/PS-001 ] ;
 	    then
