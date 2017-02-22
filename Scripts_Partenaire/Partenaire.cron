@@ -21,7 +21,12 @@
 # 
 # m h  dom mon dow   command
 
-* * * * * /home/save/Scripts/Envoi_Flux_CkSum.sh >> /home/save/Scripts/Logs.d/Cron.log 2>&1
-* * * * * /home/save/Scripts/Envoi_Flux_CkSum-Athena.sh >> /home/save/Scripts/Logs.d/Cron-Athena.log 2>&1
+# Envoi du Flux Cksum des que demande
+* * * * * /path/to/athena/Scripts/Envoi_Flux_CkSum.sh >> /path/to/athena/Scripts/Logs.d/Cron.log 2>&1
 
-00 0 * * * * /home/save/Scripts/Purge.sh >> /home/save/Scripts/Logs.d/Purge.log 2>&1
+# Purge des sauvegardes dont la rentention est depassees
+
+0 0 * * * /path/to/athena/Scripts/Purge.sh >> /path/to/athena/Scripts/Logs.d/Purge.log 2>&1
+
+# Envoi des fichier lie aux restauration des que demande 
+* * * * * /path/to/athena/Scripts/Send_Resto.sh >> /path/to/athena/Scripts/Logs.d/Resto.log 2>&1
