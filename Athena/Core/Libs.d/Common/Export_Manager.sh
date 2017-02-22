@@ -4,29 +4,35 @@
 # Export_Manager.sh
 # Utilité: Librairie de gestion du transfet de la Tarball vers des hotes pré-définis
 # Auteur: RootKitDev <RootKit.Dev@gmail.com>
-# Mise à jour le: 23/01/2017
+# Mise à jour le: 22/02/2017
 ######################################
 
 Export_save(){
 
     Month=$(date +"%m")
     Day=$(date +"%d")
-    
-    while read line  
-    do
-        if [[ $line =~ "user" ]];
-        then
-            user=$(echo $line | cut -d'=' -f2)
-        fi
 
-        if [[ $line =~ "password" ]];
-        then
-            passwd=$(echo $line | cut -d'=' -f2)
-        fi
-    done < $FILE_PATH/User_Export.cnf
+##########################################################
+# Optionnal part if ssh key without passphrase is enable
+##########################################################
+#
+#    while read line  
+#    do
+#        if [[ $line =~ "user" ]];
+#        then
+#            user=$(echo $line | cut -d'=' -f2)
+#        fi
+#
+#        if [[ $line =~ "password" ]];
+#        then
+#            passwd=$(echo $line | cut -d'=' -f2)
+#        fi
+#    done < $FILE_PATH/User_Export.cnf
+#
+#########################################################
 
-    REMOTE_HOST_TAB=( "backup.rootkit-lab.org" "home.data-infinity.fr" )
-    
+    REMOTE_HOST_TAB=( "srv1.domain.tld" "srv2.domain.tld" )
+
     Count_Host=$(mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "SELECT count(*) As '' FROM Partners")
 
     if [[ $Count_Host -ne ${#REMOTE_HOST_TAB[@]} ]]; then
@@ -39,7 +45,14 @@ Export_save(){
     for (( i = 0; i < ${#REMOTE_HOST_TAB[@]}; i++ )); do
         REMOTE_HOST=${REMOTE_HOST_TAB[$i]}
 
-        SCP_CMD="sshpass -p $passwd scp $EXPORT_PATH/$1 $user@$REMOTE_HOST:$REMOTE_EXPORT_PATH"
+
+#                               Use on of SCP_CMD 
+#               1) if user/pwd export if set in $FILE_PATH/User_Export.cnf
+#               2) if ssh key without passphrase is enable
+#################################################################################################
+#   1)  SCP_CMD="sshpass -p $passwd scp $EXPORT_PATH/$1 $user@$REMOTE_HOST:$REMOTE_EXPORT_PATH"
+#   2)  SCP_CMD="scp $EXPORT_PATH/$1 $user@$REMOTE_HOST:$REMOTE_EXPORT_PATH"
+##################################################################################################
 
         VarChkSum=$(Check_Partners)
 
@@ -60,7 +73,14 @@ Export_save(){
 
             echo "" >> $LOG_PATH/Save$SUB_LOG.log
             echo "Envoie d'une demande de CkSum de la part de \"$REMOTE_HOST\"" >> $LOG_PATH/Save$SUB_LOG.log
-            sshpass -p $passwd scp $EXPORT_CKSUM_PATH/"Demande_CkSum$SUB_LOG" $user@$REMOTE_HOST:"/home/athena"
+
+#               1) if user/pwd export if set in $FILE_PATH/User_Export.cnf
+#               2) if ssh key without passphrase is enable
+#################################################################################################
+#   1)      sshpass -p $passwd scp $EXPORT_CKSUM_PATH/"Demande_CkSum$SUB_LOG" $user@$REMOTE_HOST:"/path/to/athena"
+#   2)      scp $EXPORT_CKSUM_PATH/"Demande_CkSum$SUB_LOG" $user@$REMOTE_HOST:"/path/to/athena"
+##################################################################################################
+
             echo "Demande envoyée" >> $LOG_PATH/Save$SUB_LOG.log
             rm $EXPORT_CKSUM_PATH/"Demande_CkSum$SUB_LOG"
 

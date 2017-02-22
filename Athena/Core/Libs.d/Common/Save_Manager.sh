@@ -8,15 +8,14 @@
 ######################################
 
 Size(){
-	
 	Month=$(date +"%m")
 	Day=$(date +"%d")
 
 	size=$(tar -tzvf $1 | gawk ' BEGIN {sum=0} //{sum+=$3} END{print sum} ')
 	unit="o"
-	
+
 	mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "UPDATE Save SET size=$size WHERE month=$Month and day=$Day"
-	
+
 	while [[ $size -gt 1024 ]];
 	do
 		size=$(($size / 1024))
@@ -47,7 +46,6 @@ Size(){
 				unit="Yo"
 			;;
 		esac
-
 	done
 
 	echo ""  >> $LOG_PATH/Save.log
@@ -57,7 +55,6 @@ Size(){
 
 Time_Convert(){
 	Time=$(echo $1 | cut -d'.' -f1)
-
 	Heu=$(echo $Time | cut -d"h" -f1)
 	Min=$(echo $Time | cut -d"m" -f1)
 	Sec=$(echo $Time | cut -d"m" -f2)
@@ -97,30 +94,27 @@ Time_Convert(){
 	Time=$Heu":"$Min":"$Sec
 
 	echo $Time
-
 }
 
 Time_2_Save(){
-	
+
 	Time="$(Time_Convert $1)"
-	
+
 	# Determining of useful variables
     Month=$(date +"%m")
     Day=$(date +"%d")
 
     mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "UPDATE Save SET time_2_save$SUB_LOG='$Time' WHERE month=$Month and day=$Day"
-    
+
     echo $Time
 }
 
 Time_2_Transfer(){
-	
+
 	Time="$(Time_Convert $1)"
-	
 	# Determining of useful variables
     Month=$(date +"%m")
     Day=$(date +"%d")
-
 	# Read SQL
 	Old=$(mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "SELECT time_2_transfer_AVG$SUB_LOG As '' FROM Save WHERE month=$Month and day=$Day")
 
@@ -128,22 +122,21 @@ Time_2_Transfer(){
 	then
 		mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "UPDATE Save SET time_2_transfer_AVG$SUB_LOG='$Time' WHERE month=$Month and day=$Day"
 	else
-	
+
 		TimeAVG="$(Add_Time $Time $Old)"
-		
+
 		TimeAVG="$(AVG_Time $TimeAVG)"
-		
+
 		TimeAVG="$(Time_Convert $TimeAVG)"
 
 		mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "UPDATE Save SET time_2_transfer_AVG$SUB_LOGmk='$TimeAVG' WHERE month=$Month and day=$Day"
-	
 	fi
 
 	echo $Time
 }
 
 Add_Time(){
-	
+
 	Heu_Time=$(echo $1 | cut -d":" -f1)
 	Min_Time=$(echo $1 | cut -d":" -f2)
 	Sec_Time=$(echo $1 | cut -d":" -f3)
@@ -178,11 +171,9 @@ Add_Time(){
 	fi
 
 	Heu=$(($Heu+$HeuRet))
-	
 	Time=$Heu":"$Min":"$Sec
-	
+
 	echo $Time
-	
 }
 
 AVG_Time(){
@@ -214,8 +205,8 @@ AVG_Time(){
 	    Heu=$(($Heu-$HeuRet))
 		Heu=$(($Heu/${#REMOTE_HOST_TAB[@]}))
 	fi
-	
+
 	Time=$Heu":"$Min":"$Sec
-	
+
 	echo $Time
 }

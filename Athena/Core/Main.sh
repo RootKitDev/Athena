@@ -62,6 +62,11 @@ do
 done
 
 echo "" >> $LOG_PATH/Save.log
+echo "Envoi des Logs du jour par mail" >> $LOG_PATH/Save.log
+
+php $COMMON_LIB/Mail.php
+
+echo "" >> $LOG_PATH/Save.log
 echo "Fin du script $0 ($Type)" >> $LOG_PATH/Save.log
 echo `date` >> $LOG_PATH/Save.log
 
