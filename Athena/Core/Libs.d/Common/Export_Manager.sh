@@ -109,7 +109,7 @@ Export_save(){
                 fi
             fi
 
-            if [[ $(($i + 1)) == ${#REMOTE_HOST_TAB[@]} ]]; then
+            if [[ $(($i + 1)) == ${#REMOTE_HOST_TAB[@]} ]] && ([[ "$Old" == "OK" ]] || [[ "$Old" == "OK_SQL" ]]); then
                 echo "" >> $LOG_PATH/Save$SUB_LOG.log
                 echo "Suppression du fichier de sauvegarde local ($1)" >> $LOG_PATH/Save$SUB_LOG.log
                 $(rm $EXPORT_PATH/*)

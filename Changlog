@@ -1,3 +1,15 @@
+commit 051a1dc767ba099128ec10239c72d6bfa251af12
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Wed Feb 22 11:31:51 2017 +0100
+
+    Add Correct Cron Partern
+
+commit e130b6e4c0a5ca1662e3ee870e239c7a778e6ac7
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Wed Feb 22 11:29:01 2017 +0100
+
+    Add Mail lib (phpmailer), Partern Scripts
+
 commit a325e5662bf50b18608aaff10c92ca07ae2c5b21
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Wed Feb 8 08:25:31 2017 +0100
