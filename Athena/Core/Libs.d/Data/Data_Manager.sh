@@ -227,3 +227,43 @@ Create_Tarball(){
 
     Export_save "$EXPORT_NAME" "$1"
 }
+
+Test_Svg(){
+	source $COMMON_LIB/Variable_Manager.sh
+
+	while read line
+	do
+		if [[ $line =~ "user" ]];
+		then
+			user=$(echo $line | cut -d'=' -f2)
+		fi
+	done < $FILE_PATH/User_Export.cnf
+
+	echo "Test de sauvegarde en cours"
+
+	echo "Test de sauvegarde" > ./file_test_svg
+	echo "Si vous lisez ces lignes une fois le \"test-svg\" fini" >> ./file_test_svg
+	echo "c'est que le test c'est fini correctement" >> ./file_test_svg
+	
+	tar -czf $EXPORT_CKSUM_PATH/test_svg.tar.gz ./file_test_svg -C $EXPORT_CKSUM_PATH/ . > /dev/null 2>&1
+	rm ./file_test_svg
+	REMOTE_HOST_TAB=$(mysql --defaults-extra-file=/home/athena/Core/Files.d/User_SQL.cnf -D Athena -e "SELECT host As '' FROM Partners")
+	for REMOTE_HOST in ${REMOTE_HOST_TAB[@]}
+	do
+		scp $EXPORT_CKSUM_PATH/test_svg.tar.gz $user@$REMOTE_HOST:$REMOTE_EXPORT_PATH  > /dev/null 2>&1
+		res=1
+		while [ $res -ne 0 ]; do
+			sleep 1s
+			ls $EXPORT_CKSUM_PATH"/remote_file_test_svg" > /dev/null 2>&1
+			res=$(echo $?)
+		done
+	done
+
+	if [[ -f $EXPORT_CKSUM_PATH"/remote_file_test_svg" ]]; then
+		echo "Le test de sauvegarde c'est terminé avec succès voici le contenu du fichier :"
+		cat $EXPORT_CKSUM_PATH"/remote_file_test_svg"
+	fi
+	sleep 2s
+	rm $EXPORT_CKSUM_PATH/*
+
+}
