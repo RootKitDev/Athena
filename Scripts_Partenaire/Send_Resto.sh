@@ -11,7 +11,7 @@ Save_User=""
 REMOTE_HOST="Master.host"
 
 HOME_PATH="/path/to/athena"
-EXPORT_PATH="$HOME_PATH/IHM/Export"
+EXPORT_PATH="$HOME_PATH/MasterHost/Export"
 RESTO_PATH="$HOME_PATH/MasterHost/Resto"
 SAVE_PATH="$HOME_PATH/MasterHost/Data"
 
