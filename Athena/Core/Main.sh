@@ -14,51 +14,68 @@ COMMON_LIB="$LIB_PATH/Common"
 DATA_LIB="$LIB_PATH/Data"
 SQL_LIB="$LIB_PATH/SQL"
 LOG_PATH="$HOME_PATH/Logs.d"
+SPECIAL_LIB="$LIB_PATH/Special"
 
 if [ $# -eq 0 ]
 then
-    usage
+	usage
 fi
 
-while getopts ":t:vo:h" option
+while getopts ":t:vo:hV-:" option
 do
-    case $option in
-        v)
-            exec 5> $LOG_PATH/Debug.log 2>&1
-            BASH_XTRACEFD="5"
-            set -x
-            ;;
-        t)
-            if [ "$OPTARG" == "Data" ]
-            then
-                source $DATA_LIB/Data_Manager.sh
-                Data_save
-                Type=$OPTARG
-            elif [ "$OPTARG" == "SQL" ]
-            then
-                source $SQL_LIB/Sql_Manager.sh
-                SQL_save
-                Type=$OPTARG
-            else
-                echo "L'argumet \"$OPTARG\" est incorrect"
-                exit 1
-            fi
-            ;;
-        o)
-            echo "Liste des arguments à traiter : $OPTARG"
-            ;;
-        h)
-            usage
-            ;;
-        :)
-            echo "L'option \"-$OPTARG\" requiert un argument"
-            exit 1
-            ;;
-        \?)
-            echo "$OPTARG : option invalide"
-            exit 1
-            ;;
-    esac
+	case $option in
+		v)
+			exec 5> $LOG_PATH/Debug.log 2>&1
+			BASH_XTRACEFD="5"
+			set -x
+			;;
+		t)
+			if [ "$OPTARG" == "Data" ]
+			then
+				source $DATA_LIB/Data_Manager.sh
+				Data_save
+				Type=$OPTARG
+			elif [ "$OPTARG" == "SQL" ]
+			then
+				source $SQL_LIB/Sql_Manager.sh
+				SQL_save
+				Type=$OPTARG
+			else
+				echo "L'argumet \"$OPTARG\" est incorrect"
+				exit 1
+			fi
+			;;
+		o)
+			echo "Liste des arguments à traiter : $OPTARG"
+			;;
+		h)
+			usage
+			;;
+		V)
+			cat "$HOME_PATH/Conf/Version"
+			exit 0
+			;;
+		-)
+			case ${OPTARG} in
+				"check") 
+					$SPECIAL_LIB/check_Athena.sh
+					;;
+				"test-svg") 
+					source $DATA_LIB/Data_Manager.sh
+					Test_Svg
+					;;
+			esac
+			exit 0
+			;;
+		:)
+			echo "L'option \"-$OPTARG\" requiert un argument"
+			exit 1
+			;;
+		\?)
+			echo "$OPTARG : option invalide"
+			exit 1
+			;;
+	esac
 done
 
 echo "" >> $LOG_PATH/Save.log
