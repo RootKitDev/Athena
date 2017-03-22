@@ -1,3 +1,11 @@
+commit cb5eec11aca7a3c874fbf50cca1e1b7817d92ee7
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Wed Feb 22 11:47:13 2017 +0100
+
+     [002 Resolved]
+     "Athena removed the tarball systematically" 
+     => Athena only removes tarballs when the state is OK
+
 commit 4ce243903bd09a2abe5e231cdcb87aaf03db7eba
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Mon Jan 30 16:23:22 2017 +0100
