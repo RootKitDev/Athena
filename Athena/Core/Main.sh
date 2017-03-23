@@ -4,7 +4,7 @@
 # Main.sh
 # Utilité: Script principal d'Athena 
 # Auteur: RootKitDev <RootKit.Dev@gmail.com>
-# Mise à jour le: 23/01/2017
+# Mise à jour le: 23/03/2017
 ######################################
 
 # Define PATH
@@ -53,7 +53,7 @@ do
 			;;
 		V)
 			cat "$HOME_PATH/Conf/Version"
-			exit 0
+			exit 10
 			;;
 		-)
 			case ${OPTARG} in
@@ -65,7 +65,7 @@ do
 					Test_Svg
 					;;
 			esac
-			exit 0
+			exit 11
 			;;
 		:)
 			echo "L'option \"-$OPTARG\" requiert un argument"

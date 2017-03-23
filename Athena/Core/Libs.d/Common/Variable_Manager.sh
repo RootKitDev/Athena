@@ -15,9 +15,9 @@ EXCLUDE_LIST_PATH="$HOME_PATH/ExcludeSave.d"
 FILE_PATH="$HOME_PATH/Files.d"
 
 if [[ -z $SUB_LOG ]]; then
-    EXPORT_PATH="$HOME_PATH/Data_Export"
-    REMOTE_EXPORT_PATH="/path/to/remote/folder/Data"
+	EXPORT_PATH="$HOME_PATH/Data_Export"
+	REMOTE_EXPORT_PATH="/path/to/remote/folder/Data"
 else
-    EXPORT_PATH="$HOME_PATH/Dumps_Export"
-    REMOTE_EXPORT_PATH="/path/to/remote/folder/Dumps"
+	EXPORT_PATH="$HOME_PATH/Dumps_Export"
+	REMOTE_EXPORT_PATH="/path/to/remote/folder/Dumps"
 fi

@@ -69,26 +69,26 @@ Time_Convert(){
 
 	if [ -z $Heu ] || [ $Time = $Heu ];
 	then
-	    Heu=00
+		Heu=00
 	elif [ $Heu -lt 10 ];
 	then
-	    Heu="0$Heu"
+		Heu="0$Heu"
 	fi
 
 	if [ -z $Min ];
 	then
-	    Min=00
+		Min=00
 	elif [ $Min -lt 10 ];
 	then
-	    Min="0$Min"
+		Min="0$Min"
 	fi
 
 	if [ -z $Sec ];
 	then
-	    Sec=00
+		Sec=00
 	elif [ $Sec -lt 10 ];
 	then
-	    Sec="0$Sec"
+		Sec="0$Sec"
 	fi
 
 	Time=$Heu":"$Min":"$Sec
@@ -101,20 +101,20 @@ Time_2_Save(){
 	Time="$(Time_Convert $1)"
 
 	# Determining of useful variables
-    Month=$(date +"%m")
-    Day=$(date +"%d")
+	Month=$(date +"%m")
+	Day=$(date +"%d")
 
-    mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "UPDATE Save SET time_2_save$SUB_LOG='$Time' WHERE month=$Month and day=$Day"
+	mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "UPDATE Save SET time_2_save$SUB_LOG='$Time' WHERE month=$Month and day=$Day"
 
-    echo $Time
+	echo $Time
 }
 
 Time_2_Transfer(){
 
 	Time="$(Time_Convert $1)"
 	# Determining of useful variables
-    Month=$(date +"%m")
-    Day=$(date +"%d")
+	Month=$(date +"%m")
+	Day=$(date +"%d")
 	# Read SQL
 	Old=$(mysql --defaults-extra-file=$FILE_PATH/User_SQL.cnf -D Athena -e "SELECT time_2_transfer_AVG$SUB_LOG As '' FROM Save WHERE month=$Month and day=$Day")
 
@@ -152,22 +152,22 @@ Add_Time(){
 	MinRet=0
 	if [ $Sec -ge 60 ];
 	then
-	    while [[ $Sec -ge 60 ]]
-	    do
-	    	Sec=$(($Sec - 60))
-	    	MinRet=$(($MinRet + 1))
-	    done
+		while [[ $Sec -ge 60 ]]
+		do
+			Sec=$(($Sec - 60))
+			MinRet=$(($MinRet + 1))
+		done
 	fi
 
 	Min=$(($Min+$MinRet))
 	HeuRet=0
 	if [ $Min -ge 60 ];
 	then
-	    while [[ $Min -ge 60 ]]
-	    do
-	    	Min=$(($Min - 60))
-	    	HeuRet=$(($HeuRet + 1))
-	    done
+		while [[ $Min -ge 60 ]]
+		do
+			Min=$(($Min - 60))
+			HeuRet=$(($HeuRet + 1))
+		done
 	fi
 
 	Heu=$(($Heu+$HeuRet))
@@ -185,8 +185,8 @@ AVG_Time(){
 	MinRet=0
 	if [ $Sec -eq 0 ] && [ $Min -gt 0 ];
 	then
-	    Sec=60
-	    MinRet=$(($MinRet + 1))
+		Sec=60
+		MinRet=$(($MinRet + 1))
 	fi
 	Sec=$(($Sec/${#REMOTE_HOST_TAB[@]}))
 
@@ -194,15 +194,15 @@ AVG_Time(){
 	HeuRet=0
 	if [ $Min -eq 0 ] && [ $Heu -gt 0 ];
 	then
-	    Min=60
-	    HeuRet=$(($HeuRet + 1))
+		Min=60
+		HeuRet=$(($HeuRet + 1))
 	fi
 
 	Min=$(($Min/${#REMOTE_HOST_TAB[@]}))
 	
 	if [ $Heu -gt 0 ];
 	then
-	    Heu=$(($Heu-$HeuRet))
+		Heu=$(($Heu-$HeuRet))
 		Heu=$(($Heu/${#REMOTE_HOST_TAB[@]}))
 	fi
 
