@@ -11,7 +11,7 @@ Athena uses 3 languages:
  
 ---
 ### version
-0.1.10b
+0.1.11
 
 Of course, Athena is open source with a [public filing] [save] on GitHub.
 

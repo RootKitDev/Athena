@@ -1,3 +1,11 @@
+commit 5cef9f9c71ee5ebc9331bdd11a04bd114426da98
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Thu Mar 23 15:24:19 2017 +0100
+
+	[003 Resolved]
+	Athena don't remove the tarball to SQL backup 
+	=> Athena remove tarball and cksum file for each database
+
 commit bd74cffd31a4a62c37002508241b11165605cfe0
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Wed Mar 23 08:13:00 2017 +0100
