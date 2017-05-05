@@ -7,7 +7,7 @@ $Day = date("d");
 $res = substr($Day, 0, 1);
 
 if ($res == 0) {
-    $Day = substr($Day, 1, 1);
+	$Day = substr($Day, 1, 1);
 }
 
 $Message = '';
@@ -22,28 +22,28 @@ $line = fgets($Open_File);
 fclose($Open_File);
 
 if (empty($line)) {
-    $Message .= "Pas de Logs pour cette sauvegarde";
+	$Message .= "Pas de Logs pour cette sauvegarde";
 }
 else {
-    foreach ($lines as $line) {
-        if (strpos($line, 'Save_SQL.log') !== false){
-            exec("sed -n /\"".$Day." ".$Month."\"/,/\"Fin du script\"/p /path/to/athena/Core/Logs.d/Save_SQL.log > /path/to/athena/Core/Logs.d/WebLog.log");
+	foreach ($lines as $line) {
+		if (strpos($line, 'Save_SQL.log') !== false){
+			exec("sed -n /\"".$Day." ".$Month."\"/,/\"Fin du script\"/p /path/to/athena/Core/Logs.d/Save_SQL.log > /path/to/athena/Core/Logs.d/WebLog.log");
 
-            $FileSQL = "/path/to/athena/Core/Logs.d/WebLog.log";
+			$FileSQL = "/path/to/athena/Core/Logs.d/WebLog.log";
 
-            $linesSQL = file($FileSQL);
-            $Open_File = fopen($FileSQL, 'r+');
-            $lineSQL = fgets($Open_File);
-            fclose($Open_File);
+			$linesSQL = file($FileSQL);
+			$Open_File = fopen($FileSQL, 'r+');
+			$lineSQL = fgets($Open_File);
+			fclose($Open_File);
 
-            foreach ($linesSQL as $lineSQL) {
-                $Message .= $lineSQL."\n";
-            }
-        }
-        else{
-            $Message .= $line."\n";
-        }
-    }
+			foreach ($linesSQL as $lineSQL) {
+				$Message .= $lineSQL."\n";
+			}
+		}
+		else{
+			$Message .= $line."\n";
+		}
+	}
 }
 
 date_default_timezone_set('Europe/Paris');
@@ -64,7 +64,7 @@ $mail->Username = '';                                 // SMTP username
 $mail->Password = '     ';                           // SMTP password
 $mail->SMTPSecure = '   ';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 000;                                    // TCP port to connect to
-        
+		
 $mail->setFrom('Username', '');
 $mail->addAddress('Username', '');     // Add a recipient
 

@@ -4,7 +4,7 @@
 # Data_Manager.sh
 # Utilité: Librairie lié aux sauvegardes de type données
 # Auteur: RootKitDev <RootKit.Dev@gmail.com>
-# Mise à jour le: 23/03/2017
+# Mise à jour le: 05/05/2017
 ######################################
 
 Data_save(){
@@ -48,6 +48,7 @@ Data_save(){
 		echo "La sauvegarde a été déplanifiée" >> $LOG_PATH/Save.log
 		State_Save "11"
 	else
+		# This condition is that of the author: the second Sunday of the month. If this does not suit you you can change it
 		if (([[ $Day -ge 8 ]] && [[ $Day -le 14 ]]) && [[ $DoW -eq 7 ]]) || [[ -f $FLAG_PATH/EX-000 ]];
 		then
 			if [ ! -f $FLAG_PATH/PS-001 ] ;
@@ -85,7 +86,7 @@ Data_save(){
 				echo 'Fanion "Pas de Sauvegarde Mensuel" détecté' >> $LOG_PATH/Save.log
 				State_Save "5"
 			fi
-		elif [[ "$DoW" = "1" ]];
+		elif [[ "$DoW" = "1" ]]; # This condition is that of the author: every Monday. If this does not suit you you can change it
 		then 
 			if [ ! -f $FLAG_PATH/PS-002 ];
 			then
@@ -112,7 +113,8 @@ Data_save(){
 				echo 'Fanion "Pas de Sauvegarde Hebdomadaire" détecté' >> $LOG_PATH/Save.log
 				State_Save "5"
 			fi
-		elif [[ "$DoW" = "6" ]] && [[ "$(date +%H%M)" -gt $Go_Save_WE ]];
+		# This condition is that of the author: Every Saturday at $Go_Save_WE. If this does not suit you you can change it
+		elif [[ "$DoW" = "6" ]] && [[ "$(date +%H%M)" -gt $Go_Save_WE ]]; 
 		then 
 			if [ ! -f $FLAG_PATH/PS-003 ];
 			then
