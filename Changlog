@@ -1,3 +1,15 @@
+commit a9a9dad459130b0fad0e6dccb816e2f9399de200
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Fri May 5 14:42:44 2017 +0200
+
+    Detect and Resolv Bug #005 : don't display help message
+
+commit a8e142cc9b141505b29f08627aa58e616b28471a
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Fri Apr 21 15:25:23 2017 +0200
+
+    Add File 20170421
+
 commit d65cd7f02928a369184301c936dad6362cf535de
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Fri Apr 21 15:23:07 2017 +0200

@@ -1,3 +1,10 @@
+commit a9a9dad459130b0fad0e6dccb816e2f9399de200
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Fri May 5 14:42:44 2017 +0200
+
+	[005 Opening And Resolved] : don't display help message
+	=> source Help lib
+
 commit 5cef9f9c71ee5ebc9331bdd11a04bd114426da98
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Thu Mar 23 15:24:19 2017 +0100
