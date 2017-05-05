@@ -1,8 +1,20 @@
+commit 9f309b0300c4bfb0641cec17fb1619092bd295a1
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Fri May 5 17:09:27 2017 +0200
+
+    Add Demo Log file for HMI and update Help lib
+
+commit 2b1dbe0ea3e68881b6d313a31ee12e8d54376fd4
+Author: RootKitDev <rootkit.dev@gmail.com>
+Date:   Fri May 5 14:44:38 2017 +0200
+
+    Add File 20170505
+
 commit a9a9dad459130b0fad0e6dccb816e2f9399de200
 Author: RootKitDev <rootkit.dev@gmail.com>
 Date:   Fri May 5 14:42:44 2017 +0200
 
-    Detect and Resolv Bug #005 : don't display help message
+    Detect and Resolv Bug #004 : don't display help message
 
 commit a8e142cc9b141505b29f08627aa58e616b28471a
 Author: RootKitDev <rootkit.dev@gmail.com>
