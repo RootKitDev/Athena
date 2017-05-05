@@ -5,9 +5,9 @@ Système de sauvegarde indépendant pour Linux (testé sur Debian GNU / Linux 8.
 ---
 ### Langues utilisées
 Athena utilise 3 languages:
- - Shell (33%) (Core)
- - PHP (60%) (IHM / DashBoard)
- - HTML (7%) (IHM / DashBoard)
+ - Shell (Core)
+ - PHP (IHM / DashBoard)
+ - HTML (IHM / DashBoard)
  
 ---
 ### version
