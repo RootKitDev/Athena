@@ -5,9 +5,9 @@ Independent backup system for Linux (tested on Debian GNU / Linux 8.5 (jessie))
 ---
 ### Languages Used
 Athena uses 3 languages:
- - shell (33%) (Core)
- - PHP (60%) (HMI / DashBoard)
- - HTML (7%) (HMI / DashBoard)
+ - shell (Core)
+ - PHP (HMI / DashBoard)
+ - HTML (HMI / DashBoard)
  
 ---
 ### version
