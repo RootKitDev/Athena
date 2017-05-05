@@ -4,7 +4,7 @@
 # Main.sh
 # Utilité: Script principal d'Athena 
 # Auteur: RootKitDev <RootKit.Dev@gmail.com>
-# Mise à jour le: 23/03/2017
+# Mise à jour le: 05/05/2017
 ######################################
 
 # Define PATH
@@ -15,6 +15,8 @@ DATA_LIB="$LIB_PATH/Data"
 SQL_LIB="$LIB_PATH/SQL"
 LOG_PATH="$HOME_PATH/Logs.d"
 SPECIAL_LIB="$LIB_PATH/Special"
+
+source $COMMON_LIB/Help.sh
 
 if [ $# -eq 0 ]
 then
