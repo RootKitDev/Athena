@@ -23,7 +23,7 @@ Athena a besoin du compte UNIX (athena) si vous activez l'exportation de l'archi
 
 Athena a également besoin de compte MySQL:
 
- - 1 pour le DUMP des bases de données (sauvegarde SQL), par exemple Backup. Droit : "Show databases", "File", "Select", "Update", ""
+ - 1 pour le DUMP des bases de données (sauvegarde SQL), par exemple Backup. Droit : "Show databases", "File", "Select", "Update"
  - 1 pour les mises à jour de la base de données Athena par exemple AthenaUser. Droit : "Insert", "Select", "Update"
 
 Voir exemple dans Core/libs/utility/BDD.py
