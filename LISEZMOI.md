@@ -92,10 +92,6 @@ Voici un exemple de règle crontab
 Le système actuel requiert un hôte de réception pour l'export des sauvegardes.
 
 ---
-### Git lié
-Une IHM (Interface Homme Machine) est en cours d'élaboration affichant les journaux de sauvegarde, le volume de la sauvegarde, ...
-
----
 ### Contribution
 
 Voulez-vous contribuer? Très bien !

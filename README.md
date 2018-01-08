@@ -92,10 +92,6 @@ Here is an example of a crontab rule
 The current system requires a receiving host to export backups.
 
 ---
-### Git bound
-An HMI (Human Machine Interface) is being developed displaying the backup logs, the volume of the backup, ...
-
----
 ### Contribution
 
 Do you want to contribute? Very good !
