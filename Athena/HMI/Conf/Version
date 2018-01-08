@@ -1,9 +1,0 @@
-#! /bin/bash
-
-if [[ $1 == "PROD" ]]; then
-	echo "0.1.2"
-elif [[ $1 == "PREPROD" ]]; then
-	echo "0.1.2"
-elif [[ $1 == "DEV" ]]; then
-	echo "0.1.2"
-fi

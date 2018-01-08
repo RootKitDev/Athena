@@ -1,0 +1,24 @@
+Connection au serveur MySQL
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import mysql.connector 
+
+conn = mysql.connector.connect(host="localhost",user="root",password="XXX", database="test1")
+cursor = conn.cursor()
+conn.close()
+
+Insérer des données
+
+user = {"name": "olivier", "age" : "34"}
+cursor.execute("""INSERT INTO users (name, age) VALUES(%(name)s, %(age)s)""", user)
+
+
+Trouver des données avec mysql
+
+cursor.execute("""SELECT id, name, age FROM users WHERE id = %s""", ("5", ))
+rows = cursor.fetchall()
+for row in rows:
+    print('{0} : {1} - {2}'.format(row[0], row[1], row[2]))
+

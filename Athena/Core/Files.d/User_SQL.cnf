@@ -1,6 +1,0 @@
-# Automatically generated for Debian scripts. DO NOT TOUCH!
-[client]
-host     = localhost
-user     = AthenaAdm
-password = Athen@AdmP@ssw0rD
-socket   = /var/run/mysqld/mysqld.sock
