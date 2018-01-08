@@ -17,7 +17,7 @@ file = open(CONF_PATH + "/Type", "r")
 Type = file.read() 
 
 if Type == "SQL":
-	conn = mysql.connector.connect(host="localhost",user="Backup",password="UL7QLwPl2OLInQ0QnlcK")
+	conn = mysql.connector.connect(host="localhost",user="Backup",password="B@ckupP@ssw0rD")
 else:
-	conn = mysql.connector.connect(host="localhost",user="AthenaUser",password="wN{74k9x=T(6~Dxd7<dFD+7K", database="Athena")
+	conn = mysql.connector.connect(host="localhost",user="AthenaUser",password="@then@UserP@ssw0rD", database="Athena")
 cursor = conn.cursor()
