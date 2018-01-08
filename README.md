@@ -1,110 +1,106 @@
 # Athena
 
 Independent backup system for Linux (tested on Debian GNU / Linux 8.5 (jessie))
-
+now in V1
 ---
-### Languages Used
-Athena uses 3 languages:
- - shell (Core)
- - PHP (HMI / DashBoard)
- - HTML (HMI / DashBoard)
- 
+### Languages used
+Athena uses:
+ - Shell (Core: 41%)
+ - Python (Core: 59%)
+
 ---
 ### version
-0.1.11
+1.0.0
 
-Of course, Athena is open source with a [public filing] [save] on GitHub.
+Of course, Athena is open source with a public repository [save] on GitHub.
 
 ---
 ### Installation
 
 ---
 #### Requirements
-Athena needs the UNIX account (athena) if you enable the archive export (enable by default)
+Athena needs UNIX account (athena) if you enable archive export (enable by default)
 
 Athena also needs MySQL account:
 
- - 1 for the DUMP of the databases (SQL backup), for example Backup (non-exclusive) right: "show databases", "File", "Select", "Update"
- - 1 for updating the Athena database eg AthenaAdm (exclusive) right: "Insert", "Select", "Update"
- - 1 for HMI and Dashboard, eg AthenaReport (exclusive) right: "Select"
+ - 1 for the database DUMP (SQL backup), for example Backup. Right: "Show databases", "File", "Select", "Update", ""
+ - 1 for updates to the Athena database eg AthenaUser. Right: "Insert", "Select", "Update"
 
-See example in the Files.d folder
+See example in Core / libs / utility / BDD.py
 
 ---
 #### Get the source:
 To recover the source, type:
 ```sh
-$ cd ~/
+$ cd ~ /
 $ clone git https://github.com/RootKitDev/Athena.git / home / athena
 ```
 
 ---
 ### Install
 ```sh
-$ cd /home/athena/Install.d
+$ cd / home / athena / install /
 ```
-In this folder you find Cnf subfolder (work in procces) and two file:
+In this folder you find two files:
 
  - athena.cron
  - Athena.sql
 
-File cron is my crontab configuration for example
+Cron file is my crontab configuration for example
 
 Sql file is useful for creating the database "Athena"
 
 ```sh
-$ mysql < Athena.sql -u root -p
+$ mysql <Athena.sql -u root -p
 ```
-
-
 
 ---
 ### Use
 
 ---
 #### General operation
-Athena currently runs on the backup server and the script is designed to run once a day.
+Athena is currently running on the server to back up and the script is designed to run once a day.
 
 Athena offers backups with the following frequencies
- - Monthly (complete: eg full system backup)
- - Hebdomadiare (complete: for example full backup of user data / application)
- - Weekend (monthly incremental: for example every Saturday)
+ - Monthly (complete: for example full backup of the system)
+ - Weekly (complete: for example full backup of user / application data)
+ - Weekend (incremental of the monthly: for example every Saturday)
  - SQL (complete BDD: for example every Sunday)
- - Daily (Incremental Hebdomadiare: the default action if no other backup has been triggered)
+ - Daily (incrementalWeekly: the default action if no other backup has been triggered)
 
-Athena integrates a "flag" system in ```sh /home/athena/Flags```, which allows the management of backups.
-The flags are by default "ordered" in ```sh /home/athena/Flags/Block``` so that Athena does not interpret the flag by "mistake".
+Athena incorporates a "pennant" system in ```sh / home / athena / flags```, which allows the management of backups.
+The pennants are, by default, "stored" in ```sh / home / athena / flags / block``` so that Athena does not interpret them as "error".
 
 The list of pennants:
  - EX-000 ("Exceptional Backup": run a monthly backup in the default condition (every 1st of the month))
- - PS-000 ("No Backup": Unscheduled Backup)
- - PS-001 ("No Monthly / Exceptional Backup" logs logs in the "No Backup")
- - PS-002 ("No Hebdomadiare Backup" logs logs in the "No Backup")
- - PS-003 ("No Backup Week-end" logs logs to the "No Backup" folder)
- - PS-004 ("No Daily Backup" logs logs in the "No Backup")
+ - PS-000 ("No Backup": Deprecated backup)
+ - PS-001 ("No Monthly / Exceptional Backup")
+ - PS-002 ("No Hebdomadiare Backup")
+ - PS-003 ("No Backup Weekend")
+ - PS-004 ("No daily backup")
 
 
-The automatic use of this system requires crontab (or any other task scheduler)
+Automatic use of this system requires crontab (or any other task scheduler)
 Here is an example of a crontab rule
 
 ```sh
-# Starting backup script data (Data_Save.sh) every day at 6 o'clock
-00 6 * * * /home/athena/Main.sh -t Data >> /home/athena/Logs.d/Cron.log 2> & 1
+# Launch backup script every day 6h
+00 6 * * 1-6 / bin / athena -t Data >> /home/athena/Core/logs/Cron.log 2> & 1
+00 6 * * 0 / bin / athena -t SQL >> /home/athena/Core/logs/Cron.log 2> & 1
 ```
 
-The current system requires a receive host for exporting backups.
+The current system requires a receiving host to export backups.
 
 ---
 ### Git bound
-An HMI (Human Machine Interface) is being developed that displays backup logs, backup volume, ...
-A web dashboard is also being developed, with arbitrary indicators
+An HMI (Human Machine Interface) is being developed displaying the backup logs, the volume of the backup, ...
 
 ---
 ### Contribution
 
 Do you want to contribute? Very good !
 
-Send me your ideas and comments by e-mail: <rootkit.dev@gmail.com>.
+Send me your ideas and comments by email: <rootkit.dev@gmail.com>.
 
 ---
 ### Licence
@@ -115,4 +111,4 @@ MIT
 
 ---
 
-[Save]: <https://github.com/RootKitDev/Athena>
+[save]: <https://github.com/RootKitDev/Athena>
