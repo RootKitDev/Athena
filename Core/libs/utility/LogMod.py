@@ -8,7 +8,6 @@
 # Mise à jour le: 17/08/2017
 ######################################
 
-from pathlib import Path
 import sys
 import logging
 from logging import FileHandler

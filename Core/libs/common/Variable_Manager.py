@@ -24,7 +24,7 @@ global EXCLUDE_LIST_PATH
 global FILE_PATH
 global EXPORT_PATH
 
-HOME_PATH = "/home/athena/Core"
+HOME_PATH = "/home/athena/Athena/Core"
 CONF_PATH = HOME_PATH + "/conf"
 
 file = open(CONF_PATH + "/Type", "r") 
